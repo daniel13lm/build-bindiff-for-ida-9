@@ -51,9 +51,10 @@ jobs:
       run: |
         mkdir -p build/out build/ida
         curl -L -o build/idasdk.zip "${{ env.URL_TO_IDASDK_ZIP }}"
-        echo "${{ env.SHA256_IDASDK_ZIP }}  build/idasdk.zip" | sha256sum -c -
-        if [ $? -ne 0 ]; then
-          echo "[!] SHA256 checksum does not match. Aborting."
+        
+        DOWNLOAD_HASH=$(sha256sum build/idasdk.zip | awk '{print $1}')
+        if [ "$DOWNLOAD_HASH" != "${{ env.SHA256_IDASDK_ZIP }}" ]; then
+          echo "[!] SHA256 mismatch. Aborting."
           exit 1
         fi
         unzip -q build/idasdk.zip -d build/ida/
