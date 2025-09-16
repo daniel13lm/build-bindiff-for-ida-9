@@ -34,7 +34,7 @@ jobs:
     - uses: actions/checkout@v4
       with:
         repository: google/binexport
-        ref: f1654c41cd51f86a4d4ded95164dcd848e8de35a
+        ref: 7e92f6a701ef0f8918e8946f63fd87e5a54db0d9
         path: binexport
 
     # - name: Apply patch
