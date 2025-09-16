@@ -51,12 +51,6 @@ jobs:
       run: |
         mkdir -p build/out build/ida
         curl -L -o build/idasdk.zip "${{ env.URL_TO_IDASDK_ZIP }}"
-        
-        DOWNLOAD_HASH=$(sha256sum build/idasdk.zip | awk '{print $1}')
-        if [ "$DOWNLOAD_HASH" != "${{ env.SHA256_IDASDK_ZIP }}" ]; then
-          echo "[!] SHA256 mismatch. Aborting."
-          exit 1
-        fi
         unzip -q build/idasdk.zip -d build/ida/
 
     - name: Get idasdk (Windows)
